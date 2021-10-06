@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>모두의 레시피</title>
@@ -174,55 +173,20 @@
 
 <body>
 <header th:insert="header.html"></header>
+<form action="/recipe/{recipekey}">
 <main class="b_main_wrap">
     <div class="best_menu_wrap">
-        <div class="best_menu_wrap_inside">
+        <div class="best_menu_wrap_inside" >
             <h2 class="best_menu_h2">BEST</h2>
             <hr width = "40px" color = "gray" text-align= "center"><br>
-            <div class="main_recom_recipe mrr_frist" th:each = "recipeDto : ${recipeList}">
-
-                <a th:href="@{'/recipeWatch/'+${recipeDto.recipeKey}">
-                    <iframe width="240" height="140" th:src="@{https://www.youtube.com/embed/} + ${recipeDto.youtb}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <button type="button"  class="best_link_but"><strong th:text = "${recipeDto.recipeTitle}"></strong></button>
-                    <div style="text-align:center;">
-					<span th:each="viewNum : ${recipeList}" th:inline="text">
-						<a th:href="@{'/recipe/?page=' + ${viewNum}}">[[${viewNum}]]</a>
-					</span>
-                    </div>
-                </a>
+            <div class="main_recom_recipe mrr_frist" th:each="recipelist: ${recipelist}">
+                <a class="video" th:href="@{'/recipedetail/'+${recipelist.recipekey}}"><iframe width="700" height="500" th:src="${recipelist.recipelink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a>
+                <button type="button" class="best_link_but"><strong th:text = "${recipeDto.recipeTitle}"></strong></button>
+                    <a th:text="${recipeDto.recipehit}"></a>
             </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/t4Es8mwdYlE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">분식집st 떡 볶 이🎉</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/kR77WlHRZrs?list=TLPQMDgwNjIwMjHMHC0N3n91FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">불맛 가득한 달걀볶음밥!</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/wpUsg7f-F4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">진짜 밥도둑. 잡았다 요놈 </button>
-            </div>
-
         </div>
-
-        <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/10fl2mebYHs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">참 쉬운 김밥만들기</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/R6IT_f0XPT8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">김치밥이 피오씁니다 </button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/47OIcvpqxlo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">김치전을 바삭바삭하게!</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/thXIVUt9PBU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">제육볶음 100인분 만들기</button>
-            </div>
     </div>
+
 
     <div class="new_menu_wrap">
         <div class="new_menu_wrap_inside">
@@ -268,7 +232,9 @@
             <button id="new_show_but">open</button>
         </div>
     </div>
+
 </main>
+</form>
 <footer th:insert="footer.html"></footer>
 
 </body>

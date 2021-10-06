@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.Session;
+import springbootProject.springbootProject.domain.entity.Creator;
 import springbootProject.springbootProject.domain.entity.Recipe;
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RecipeDto {
+public class CreatorDto {
 
     private Long recipekey;
     private String recipetitle;
@@ -25,7 +25,7 @@ public class RecipeDto {
     //private Material material;
 
     @Builder
-    public RecipeDto(Long recipekey, String recipetitle, String recipetype, String recipecreator, String recipedetail, String recipelink, int recipehit, Date recipeupdated) {
+    public CreatorDto(Long recipekey, String recipetitle, String recipetype, String recipecreator, String recipedetail, String recipelink, int recipehit, Date recipeupdated) {
         this.recipekey = recipekey;
         this.recipetitle = recipetitle;
         this.recipetype = recipetype;
@@ -37,8 +37,8 @@ public class RecipeDto {
 
     }
 
-    public Recipe toEntity(){
-        return Recipe.builder()
+    public Creator toEntity(){
+        return Creator.builder()
                 .recipekey(recipekey)
                 .recipetitle(recipetitle)
                 .recipetype(recipetype)
@@ -49,12 +49,4 @@ public class RecipeDto {
                 .recipeupdated(recipeupdated)
                 .build();
     }
-
-    /*
-    public void updateView(RecipeDto recipeDto) throws Exception {
-        // 조회수 업데이트
-        Session.("Recipe.updateView", recipeDto);
-    }
-
-     */
 }

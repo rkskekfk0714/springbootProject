@@ -1,6 +1,9 @@
 package springbootProject.springbootProject.domain.entity;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,9 +13,8 @@ import java.util.Date;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "recipe")
-public class Recipe {
-
+@Table(name = "creator")
+public class Creator {
     @Id
     @Column(name = "recipekey")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +46,7 @@ public class Recipe {
 
 
     @Builder
-    public Recipe(Long recipekey, String recipetitle, String recipetype, String recipecreator, String recipedetail, String recipelink, int recipehit, Date recipeupdated){
+    public Creator(Long recipekey, String recipetitle, String recipetype, String recipecreator, String recipedetail, String recipelink, int recipehit, Date recipeupdated){
         this.recipekey=recipekey;
         this.recipetitle=recipetitle;
         this.recipetype=recipetype;

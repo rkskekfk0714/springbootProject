@@ -21,10 +21,14 @@ public class MemberController {
     private final HttpSession session;
 
 
+    /*
     @GetMapping("/")
-    public String ma() {
+    public String main() {
         return "/main";
     }
+
+     */
+
 
     // 회원가입
     @GetMapping("/user/join")
