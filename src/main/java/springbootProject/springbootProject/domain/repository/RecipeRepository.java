@@ -10,6 +10,36 @@ import java.util.List;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
+    // best조회수
+    @Query(value = "select * from recipe order by recipehit desc",nativeQuery = true)
+    List<Recipe> bestrecipe();
+
+
+    // best조회수 증가
+    @Modifying
+    @Query("update Recipe p set p.recipehit = p.recipehit + 1 where p.recipekey = :recipekey")
+    int updateView(Long recipekey);
+
+    // new
+    @Query(value = "select * from recipe order by recipeupdated desc",nativeQuery = true)
+    List<Recipe> newrecipe();
+
+    // creator조회수
+    @Query(value = "select * from recipe where recipecreator = :recipecreator order by recipehit desc",nativeQuery = true)
+    List<Recipe> creatorbestrecipe(@Param("recipecreator") String recipecreator);
+
+    // creator조회수 증가
+    @Modifying
+    @Query("update Recipe p set p.recipehit = p.recipehit + 1 where p.recipekey = :recipekey")
+    int creatorupdateView(Long recipekey);
+
+    // creator new
+    @Query(value = "select * from recipe where recipecreator = :recipecreator order by recipeupdated desc",nativeQuery = true)
+    List<Recipe> creatornewrecipe(@Param("recipecreator") String recipecreator);
+
+
+
+
     /*
     @Query(value = "select * from recipe where recipeHit=(select max(recipehit)from recipe)",nativeQuery = true)
     List<Recipe> bestrecipe();
@@ -27,19 +57,22 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
      */
 
 
+    /*
     // 조회수 불러오기(Best)
     @Modifying
-    @Query(value = "select p.recipekey, p.recipetitle, p.recipelink, p.recipehit from Recipe p where p.recipecreator = :recipecreator order by p.recipehit desc")
+    @Query(value = "select * from Recipe where recipecreator = :recipecreator order by recipehit desc", nativeQuery = true)
     public List<Recipe> creatorbestRecipe(@Param("recipecreator") String recipecreator);
 
 
 
 
     // 날짜 불러오기(New)
-    @Query(value = "select r.recipekey, r.recipetitle, r.recipelink, r.recipeupdated from Recipe r where r.recipecreator = :recipecreator order by r.recipeupdated desc")
+    @Query(value = "select * from Recipe where recipecreator = :recipecreator order by recipeupdated desc", nativeQuery = true)
     public List<Recipe> newRecipe(@Param("recipecreator") String recipecreator);
 
 
+
+     */
 
 
 

@@ -41,17 +41,17 @@ public class MemberController {
     public String Sign(MemberDto memberDto) {
         memberService.joinUser(memberDto);
 
-        return "redirect:/userLogin";
+        return "redirect:/login";
     }
 
-    // 로그인
+    // 사용자 로그인
     @GetMapping("/login")
     public String login() {
         return "/memberLogin";
     }
 
 
-
+    // 사용자 로그인 처리
     @PostMapping("/userLogin")
     public String userLogin(MemberDto memberDto) {
         MemberDto result = memberService.userLogin(memberDto);
@@ -69,7 +69,7 @@ public class MemberController {
 
     }
 
-    //로그아웃
+    // 사용자 로그아웃
     @GetMapping("/userlogout")
     public String logout(){
         session.setAttribute("user", null);
@@ -99,7 +99,7 @@ public class MemberController {
 
     }
 
-    //로그아웃
+    // 관리자 로그아웃
     @GetMapping("/adminlogout")
     public String adlogout(){
         session.setAttribute("admin", null);
