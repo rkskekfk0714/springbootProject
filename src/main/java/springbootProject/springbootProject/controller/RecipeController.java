@@ -16,13 +16,6 @@ import java.util.List;
 public class RecipeController {
 
     private final RecipeService recipeService;
-    private final ReviewService reviewService;
-
-
-    @GetMapping("/creatorB")
-    public String cre() {
-        return "/recipe";
-    }
 
 
     @GetMapping("/")
@@ -34,6 +27,7 @@ public class RecipeController {
         return "main";
     }
 
+    /*
     @GetMapping("/recipe/{recipekey}")
     public String recipe(Model model,@RequestParam(value = "page",defaultValue = "1") Integer pageNum){
         List<RecipeDto> recipeDtoList = recipeService.getrecipelist(pageNum);
@@ -42,6 +36,45 @@ public class RecipeController {
 
         return "recipe";
     }
+
+     */
+
+
+
+
+
+    // 조회수(creatorBest)
+    @GetMapping("/recipe/{recipecreator}")
+    public String recipeCreator(@PathVariable("recipecreator") String recipecreator, Model model) {
+        List<RecipeDto> recipeDtoList = recipeService.getbestrecipe(recipecreator);
+        List<RecipeDto> recipeDtoList1 = recipeService.getnewrecipe(recipecreator);
+
+        model.addAttribute("recipelist", recipeDtoList);
+        model.addAttribute("recipelist", recipeDtoList);
+
+        return "recipe";
+    }
+
+    // 조회수(best)
+    @GetMapping("/best/{recipecreator}")
+    public String recipebestCreator(@PathVariable("recipecreator") String recipecreator, Model model) {
+        List<RecipeDto> recipeDtoList = recipeService.getbestrecipe(recipecreator);
+
+        model.addAttribute("recipelist", recipeDtoList);
+
+        return "best";
+    }
+
+    // 날짜(new)
+    @GetMapping("/new/{recipecreator}")
+    public String newCreator(@PathVariable("recipecreator") String recipecreator, Model model) {
+        List<RecipeDto> recipeDtoList = recipeService.getnewrecipe(recipecreator);
+
+        model.addAttribute("recipelist", recipeDtoList);
+
+        return "new";
+    }
+
 
 
 

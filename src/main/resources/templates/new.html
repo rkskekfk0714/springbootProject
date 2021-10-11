@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>모두의 레시피</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
    $(document).ready(function(){
@@ -132,7 +133,7 @@
   		margin-top: 40px;
   	}
 
-  	.best_menu_wrap_more .mrr_frist {
+  	.mrr_frist {
   		margin-top: 40px;
   	}
 
@@ -151,7 +152,7 @@
   		 cursor: pointer;
   	}
 
-  	.best_menu_wrap_more .mrr_frist .new_link_but {
+  	.mrr_frist .new_link_but {
   		 border: none;
   		 border-top: 1px solid orange;
   		 background-color: white;
@@ -166,7 +167,7 @@
   		 cursor: pointer;
   	}
 
-  	.best_menu_wrap_start .mrr_frist .new_link_but {
+  	.mrr_frist .new_link_but {
   		 border: none;
   		 border-top: 1px solid orange;
   		 background-color: white;
@@ -226,86 +227,18 @@
 <body>
 <header th:insert="header.html"></header>
 <main class="b_main_wrap">
-    <div class="best_menu_wrap_more">
-        <div class="best_menu_wrap_start">
             <div class="best_menu_wrap">
                 <div class="best_menu_wrap_inside">
                     <h2 class="best_menu_h2">New</h2>
                     <hr width = "40px" color = "gray" text-align= "center"><br>
-                    <div class="main_recom_recipe mrr_frist">
-                        <iframe width="240" height="140" src="https://www.youtube.com/embed/DnQ09ZZCjCs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <button type="button"  class="best_link_but" lonclick="location.href='videoClick.jsp'">초간단 김치찌개</button>
+                    <div class="main_recom_recipe mrr_frist" th:each="new: ${recipelist}">
+                        <a class="video" th:href="@{'/recipedetail/'+${new.recipekey}}"><iframe style="pointer-events:none;" width="250" height="150" th:src="${new.recipelink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <button type="button" class="best_link_but"><strong th:text = "${new.recipetitle}"></strong></button></a>
+                        <a th:text="${new.recipeupdated}"></a>
                     </div>
-                    <div class="main_recom_recipe mrr_frist">
-                        <iframe width="240" height="140" src="https://www.youtube.com/embed/t4Es8mwdYlE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">분식집st 떡 볶 이🎉</button>
-                    </div>
-                    <div class="main_recom_recipe mrr_frist">
-                        <iframe width="240" height="140" src="https://www.youtube.com/embed/kR77WlHRZrs?list=TLPQMDgwNjIwMjHMHC0N3n91FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">불맛 가득한 달걀볶음밥!</button>
-                    </div>
-                    <div class="main_recom_recipe mrr_frist">
-                        <iframe width="240" height="140" src="https://www.youtube.com/embed/wpUsg7f-F4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">진짜 밥도둑. 잡았다 요놈 </button>
-                    </div>
+                </div>
+            </div>
 
-                </div>
-                <div class="main_recom_recipe mrr_frist">
-                    <iframe width="240" height="140" src="https://www.youtube.com/embed/10fl2mebYHs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">참 쉬운 김밥만들기</button>
-                </div>
-                <div class="main_recom_recipe mrr_frist">
-                    <iframe width="240" height="140" src="https://www.youtube.com/embed/R6IT_f0XPT8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">김치밥이 피오씁니다 </button>
-                </div>
-                <div class="main_recom_recipe mrr_frist">
-                    <iframe width="240" height="140" src="https://www.youtube.com/embed/47OIcvpqxlo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">김치전을 바삭바삭하게!</button>
-                </div>
-                <div class="main_recom_recipe mrr_frist">
-                    <iframe width="240" height="140" src="https://www.youtube.com/embed/thXIVUt9PBU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <button type="button" class="best_link_but" onclick="location.href='videoClick.jsp'">제육볶음 100인분 만들기</button>
-                </div>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/EUdt9GjWj5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button"  class="new_link_but" lonclick="location.href='videoClick.jsp'">간장맛 vs 고추장맛 과연 승자는?</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/47LuuabPO8Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="new_link_but" onclick="location.href='videoClick.jsp'">제주의 '금악 무짠지 냉면'</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/6hLnQ5c03L8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="new_link_but" onclick="location.href='videoClick.jsp'">감자탕! 돼지등뼈 없이도 가능해요</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/XtFqi5J2KqI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="new_link_but" onclick="location.href='videoClick.jsp'">도전! 새우젓 파스타</button>
-            </div>
-        </div>
-        <div class="new_menu_wrap_hide">
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/FbApByZGCXg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="new_link_but" onclick="location.href='videoClick.jsp'">매콤새콤달콤 쫄면!</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/037o6vxm0es" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="new_link_but" onclick="location.href='videoClick.jsp'">경양식 돈가스를 만드는 두 가지 방법</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/IgTaHfnAbic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="new_link_but" onclick="location.href='videoClick.jsp'">진미채전!</button>
-            </div>
-            <div class="main_recom_recipe mrr_frist">
-                <iframe width="240" height="140" src="https://www.youtube.com/embed/4LoyQQq2pgA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <button type="button" class="new_link_but" onclick="location.href='videoClick.jsp'">땅콩버터비빔면</button>
-            </div>
-        </div>
-        <div class="bmw_but_wrap">
-            <button id="new_show_but">open</button>
-        </div>
-    </div>
 </main>
 <footer th:insert="footer.html"></footer>
 
